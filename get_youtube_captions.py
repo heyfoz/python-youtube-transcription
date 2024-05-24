@@ -1,3 +1,4 @@
+# Contains functions to retrieve YouTube video caption transcripts using the YouTube Data API.
 import os
 from flask import Flask, request, render_template
 from googleapiclient.discovery import build
