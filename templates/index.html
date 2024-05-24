@@ -1,16 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>YouTube Video to Text Transcription</title>
+    <title>YouTube to Text</title>
+    <!-- Include jQuery for making AJAX requests -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>YouTube Video to Text Transcription</h1>
-    <form method="POST">
+    <!-- Form for entering the YouTube URL -->
+    <form id="transcription-form">
         <label for="url">YouTube URL:</label>
         <input type="text" id="url" name="url" required>
         <button type="submit">Submit</button>
     </form>
+    <h2>Status:</h2>
+    <!-- Element to display status messages -->
+    <p id="status">Waiting for input...</p>
     <h2>Transcript:</h2>
-    <p>{{ transcript }}</p>
+    <!-- Element to display the transcription result -->
+    <p id="transcript"></p>
+
+    <script>
+        $(document).ready(function() {
+            $('#transcription-form').on('submit', function(event) {
+                event.preventDefault();  // Prevent default form submission
+                $('#status').text('Processing...');  // Update status to processing
+
+                var url = $('#url').val();  // Get the YouTube URL from the input field
+                $.ajax({
+                    url: '/transcribe',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({url: url}),  // Send the URL as JSON data
+                    success: function(response) {
+                        $('#status').text('Completed');  // Update status to completed
+                        $('#transcript').text(response.transcript);  // Display the transcript
+                    },
+                    error: function(xhr, status, error) {
+                        $('#status').text('Error');  // Update status to error
+                        $('#transcript').text('An error occurred: ' + xhr.responseJSON.error);  // Display the error message
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
