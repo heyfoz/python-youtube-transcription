@@ -18,23 +18,29 @@ def index():
     transcript = ""
     error = ""
     if request.method == 'POST':
+        # Extract video ID from URL
         url = request.form['url']
         video_id = extract_video_id(url)
         try:
+            # Get transcript for the video
             transcript = get_video_transcript(video_id)
         except HttpError as e:
             error = str(e)
     return render_template('index.html', transcript=transcript, error=error)
 
 def extract_video_id(url):
+    # Extract video ID from various YouTube URL formats
     video_id = None
     if 'youtu.be' in url:
         video_id = url.split('/')[-1]
     elif 'watch' in url:
         video_id = url.split('v=')[-1]
+    if '&' in video_id:
+        video_id = video_id.split('&')[0]
     return video_id
 
 def get_video_transcript(video_id):
+    # Retrieve captions for the video
     caption_response = youtube.captions().list(
         part='snippet',
         videoId=video_id
@@ -43,12 +49,13 @@ def get_video_transcript(video_id):
     captions = caption_response.get('items', [])
     auto_generated_captions_available = False
     for caption in captions:
+        # Check if auto-generated captions are available
         if caption['snippet']['trackKind'] == 'ASR':
             auto_generated_captions_available = True
             break
     
     if auto_generated_captions_available:
-        # Auto-generated captions available
+        # Download and parse auto-generated captions
         caption_id = captions[0]['id']
         caption_response = youtube.captions().download(
             id=caption_id,
@@ -60,6 +67,7 @@ def get_video_transcript(video_id):
         return "No auto-generated captions available for this video."
 
 def parse_vtt(vtt_content):
+    # Parse VTT content to extract transcript
     lines = vtt_content.split('\n')
     transcript = ''
     for line in lines:
