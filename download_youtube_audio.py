@@ -1,3 +1,5 @@
+# Script for downloading audio from YouTube videos, converting it to .wav format, and saving with a timestamped filename
+
 from pytube import YouTube  # For downloading YouTube videos
 from pydub import AudioSegment  # To convert audio to .wav
 import os  # For operating system functionalities
