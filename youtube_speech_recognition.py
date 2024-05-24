@@ -1,3 +1,5 @@
+# Provides functionality to download audio from YouTube videos for transcription with speech recognition
+
 from flask import Flask, request, render_template, jsonify # Web framework imports
 from pytube import YouTube  # To download YouTube video
 from pydub import AudioSegment  # For audio manipulation
