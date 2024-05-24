@@ -36,6 +36,7 @@ This repository contains Python scripts and a local Flask web application for tr
 - [YouTube Data API Documentation](https://developers.google.com/youtube/v3/docs)
 - [pytube Documentation](https://pytube.io/en/latest/)
 - [pydub Documentation](https://github.com/jiaaro/pydub#documentation)
+- [SpeechRecognition Documentation](https://github.com/Uberi/speech_recognition#readme)
 
 ## Note
 
