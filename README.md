@@ -4,7 +4,7 @@ This repository contains Python scripts and a local Flask web application for tr
 
 ## Features
 
-- **get_youtube_captions.py**: Contains functions to retrieve YouTube video transcripts using the YouTube Data API.
+- **get_youtube_captions.py**: Contains functions to retrieve YouTube video caption transcripts using the YouTube Data API.
 - **youtube_speech_recognition.py**: Provides functionality to download audio from YouTube videos for transcription.
 - **download_youtube_audio.py**: Script to download YouTube audio and save it with a timestamp-based filename.
 - **index.html**: HTML template for the Flask web application UI to transcribe YouTube videos.
