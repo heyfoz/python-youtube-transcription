@@ -14,7 +14,7 @@ This repository contains Python scripts and a local Flask web application for tr
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/ffm5113/python_youtube_transcription.git
+    git clone https://github.com/heyfoz/python-youtube-transcription.git
     ```
 
 2. Install the required libraries:
