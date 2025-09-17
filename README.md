@@ -29,7 +29,7 @@ This repository contains Python scripts and a local Flask web application for tr
 2. Run the desired Flask application (`get_youtube_captions.py`, or `youtube_speech_recognition.py`).
 3. Open your web browser and navigate to `http://localhost:5000` to access the web application.
 4. Enter a YouTube video URL and choose the desired transcription option.
-5. Optionally, use `get_youtube_captions.py` to download a .wav file to the project directory.
+5. Optionally, use `download_youtube_audio.py` to download a .wav file to the project directory.
 
 ## Documentation
 
